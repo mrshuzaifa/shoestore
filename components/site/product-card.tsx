@@ -31,9 +31,9 @@ const ProductCard : React.FC<ProductCardProps> = ({
         cart.addItem(data);
     }
     return ( 
-        <div onClick= {handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
+        <div className="bg-white dark:bg-neutral-800 group rounded-xl border p-3 space-y-4">
             
-            <div className="aspect-square rounded-xl bg-gray-100 relative">
+            <div className="aspect-square rounded-xl bg-gray-100 dark:bg-neutral-500 relative">
                 <Image 
                     alt={data?.name}
                     src={data?.images?.[0]?.url}
@@ -41,28 +41,41 @@ const ProductCard : React.FC<ProductCardProps> = ({
                     className="aspect-square object-cover rounded-md"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="opacity-0 group-hover:opacity-100 transition absolute bottom-5 px-6 w-full">
+                <div className="md:hidden lg:block opacity-0 group-hover:opacity-100 transition absolute bottom-5 px-6 w-full">
                     <div className="flex gap-x-6 justify-center">
                         <IconButton 
                         onClick={onPreview}
-                        icon={<Expand size={20} className="hover:text-gray-600" />}
+                        icon={<Expand size={20}  />}
                         />
                         <IconButton 
                         onClick={onAddToCart}
-                        icon={<ShoppingCart size={20} className="hover:text-gray-600" />}
+                        icon={<ShoppingCart size={20}  />}
                         />
                     </div>
                 </div> 
             </div>  
 
-            <div>
+            <div onClick= {handleClick} className="group cursor-pointer hover:bg-slate-50 dark:hover:bg-neutral-600" >
                 <p className="font-semibold text-lg">{data.name}</p>   
-                <p className="text-sm text-gray-500">{data.category.name}</p> 
-            </div>  
-
-            <div className="flex items-center justify-between">
-                <Currency value={data.price} />
-            </div>        
+                <p className="text-sm text-gray-500 dark:text-neutral-300">{data.category.name}</p>  
+                <div className="flex-col w-full">
+                    <div className="flex w-full">
+                        <div className="justify-start left-0 top-0">
+                            <Currency value={data.price} />
+                        </div>
+                        <div className="lg:hidden md:flex right-0 top-0 ml-7 pb-2">
+                            <IconButton 
+                                onClick={onPreview}
+                                icon={<Expand size={20}  />}
+                            />
+                            <IconButton 
+                                onClick={onAddToCart}
+                                icon={<ShoppingCart size={20}  />}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>       
         </div>
      );
 }

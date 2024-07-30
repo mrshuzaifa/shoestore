@@ -1,6 +1,3 @@
-
-import { redirect } from "next/navigation";
-import { checkRole } from "@/utils/roles";
 import { SearchUsers } from "./_search-users";
 import { clerkClient } from "@clerk/nextjs/server";
 import { UserForm } from "./user";
@@ -11,10 +8,9 @@ export const metadata: Metadata = {
   description: "Step On Shoe Store Admin Dashboard Manage Users",
 };
 
-export default async function UsersPage(params: {
-  searchParams: { search?: string};
-  storeId : string;
-}) {
+const UsersPage = async (params: {
+  searchParams: { search: string};
+}) => {
   const query = params.searchParams.search;
   const users = query ? 
   (await clerkClient().users.getUserList({ query })).data : 
@@ -45,3 +41,4 @@ export default async function UsersPage(params: {
     </>
   );
 }
+export default UsersPage;

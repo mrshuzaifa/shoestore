@@ -30,7 +30,7 @@ const CategoriesPage: React.FC<CategoriesPageProps> = async ({
     const colors = await getColors();
  
     return ( 
-    <div className="bg-white">
+    <div className="bg-white dark:bg-gray-950">
         <div>
             <Billboard data={billboard} />
             <div className="px-4 sm:px-6 lg:px-8 pb-24">

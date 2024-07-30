@@ -34,7 +34,7 @@ const MainNav : React.FC<MainNavProps> = ({
                         key={route.href}
                         href={route.href}
                         className={cn("text-sm font-medium transition-colors hover:text-primary",
-                        route.active ? "text-black dark:text-white" : "text-muted-foreground"
+                        route.active ? "text-black dark:text-neutral-400" : "text-muted-foreground dark:text-white"
                         )}
                     >
                         {route.label}
@@ -65,7 +65,7 @@ const MainNav : React.FC<MainNavProps> = ({
                         key = {route.href}
                         href = {route.href}
                     className={cn("text-sm font-medium transition-colors hover:text-primary",
-                            route.active ? "text-black dark:text-white" : "text-muted-foreground"
+                            route.active ? "text-black dark:text-neutral-400" : "text-muted-foreground  dark:text-slate-50"
                         )}
                     >
                     {route.label}

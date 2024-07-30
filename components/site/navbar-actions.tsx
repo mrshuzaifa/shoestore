@@ -23,7 +23,7 @@ const NavbarActions = () => {
 
     return ( 
     <div className="ml-auto flex">
-        {/*<div className="mr-10"><ModeToggle /></div>*/}
+        <div className="mr-10"><ModeToggle /></div>
         <Button onClick={()=> router.push("/cart")} className="rounded-full">
             <ShoppingBag 
             size = {20}
