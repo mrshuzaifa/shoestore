@@ -65,8 +65,8 @@ import Stripe from "stripe";
       phone_number_collection: {
          enabled: true
       },
-      success_url: "http://localhost:3000/cart?success=1",
-      cancel_url:"http://localhost:3000/cart?canceled=1",
+      success_url: "https://shoestore-ivory.vercel.app/cart?success=1",
+      cancel_url:"https://shoestore-ivory.vercel.app/cart?canceled=1",
       metadata: {
          orderId: order.id
       }
