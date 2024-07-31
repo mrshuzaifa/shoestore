@@ -51,14 +51,14 @@ const MainNav : React.FC<MainNavProps> = ({
             <Button
                 variant="outline"
                 size="icon"
-                className="shrink-0 lg:hidden"
+                className="lg:hidden flex"
             >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle navigation menu</span>
             </Button>
             </SheetTrigger>
             <SheetContent side="left">
-            <nav className="grid gap-6 text-lg font-medium">
+            <nav className="grid gap-6 text-lg font-medium lg:hidden">
             <Logo />
             {routes.map((route) => (
                     <Link 

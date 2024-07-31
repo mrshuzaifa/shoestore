@@ -1,17 +1,14 @@
-import getCategory from "@/actions/get-category";
+import getBillboards from "@/actions/get-billboards";
 import getColors from "@/actions/get-colors";
 import getProducts from "@/actions/get-products";
 import getSizes from "@/actions/get-sizes";
-import Billboard from "@/components/site/billboard";
+import Billboards from "@/components/site/billboards";
 import Filter from "@/components/site/filter";
 import MobileFilter from "@/components/site/mobile-filter";
 import ProductList from "@/components/site/product-list";
+import { shuffleArray } from "@/lib/utils";
 
-export const revalidate = 0;
-interface CategoryPageProps {
-    params: {
-        categoryId: string;
-    },
+interface ProductsPageProps {
     searchParams: {
         colorId : string;
         sizeId: string;
@@ -19,23 +16,22 @@ interface CategoryPageProps {
     }
 }
 
-const CategoryPage: React.FC<CategoryPageProps> = async ({
-    params,
+const ProductsPage: React.FC<ProductsPageProps> = async ({
     searchParams
 }) => {
     const products = await getProducts({
-        categoryId: params.categoryId,
         colorId: searchParams.colorId,
         sizeId: searchParams .sizeId
     })
+    shuffleArray(products);
+    const billboards = await getBillboards();
     const sizes = await getSizes();
     const colors = await getColors();
-    const category = await getCategory(params.categoryId);
- 
     return ( 
-    <div className="bg-white dark:bg-gray-950">
-        <div>
-            <Billboard data={category.billboard} />
+        <div className="bg-white dark:bg-gray-950">
+        <div className="pb-10">
+            <Billboards data={billboards} /> 
+        </div>
             <div className="px-4 sm:px-6 lg:px-8 pb-24">
                 <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
                     <MobileFilter sizes={sizes} colors={colors} />
@@ -52,13 +48,12 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
                         />
                     </div>
                     <div className="mt-6 lg:col-span-4 lg:mt-0">
-                        <ProductList title={category.name} items={products} />
+                        <ProductList title="All Products" items={products} />
                     </div>
                 </div>
             </div>
-        </div>
     </div>
- );
+    );
 }
  
-export default CategoryPage;
+export default ProductsPage;

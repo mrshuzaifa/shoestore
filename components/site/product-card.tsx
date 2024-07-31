@@ -41,7 +41,7 @@ const ProductCard : React.FC<ProductCardProps> = ({
                     className="aspect-square object-cover rounded-md"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="md:hidden lg:block opacity-0 group-hover:opacity-100 transition absolute bottom-5 px-6 w-full">
+                <div className="hidden lg:block opacity-0 group-hover:opacity-100 transition absolute bottom-5 px-6 w-full">
                     <div className="flex gap-x-6 justify-center">
                         <IconButton 
                         onClick={onPreview}
@@ -59,16 +59,18 @@ const ProductCard : React.FC<ProductCardProps> = ({
                 <p className="font-semibold text-lg">{data.name}</p>   
                 <p className="text-sm text-gray-500 dark:text-neutral-300">{data.category.name}</p>  
                 <div className="flex-col w-full">
+                    <div className="block justify-start left-0 top-0">
+                        <Currency value={data.price} />
+                    </div>
                     <div className="flex w-full">
-                        <div className="justify-start left-0 top-0">
-                            <Currency value={data.price} />
-                        </div>
-                        <div className="lg:hidden md:flex right-0 top-0 ml-7 pb-2">
-                            <IconButton 
+                        <div className="lg:hidden block">
+                            <IconButton
+                                className="inline-block" 
                                 onClick={onPreview}
                                 icon={<Expand size={20}  />}
                             />
                             <IconButton 
+                                className="inline-block"
                                 onClick={onAddToCart}
                                 icon={<ShoppingCart size={20}  />}
                             />

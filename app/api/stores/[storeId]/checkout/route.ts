@@ -1,10 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
-import { connect } from "http2";
-import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-
  const corsHeader = {
     "Access-Control-Allow-Origin" : "*",
     "Access-Control-Allow-Methods" : "GET, POST, PUT, DELETE, OPTIONS",
